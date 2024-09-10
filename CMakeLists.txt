@@ -43,3 +43,9 @@ add_executable(FactorialTest ${TEST_FILES})
 
 # Link the test executable with the Factorial library and Google Test libraries
 target_link_libraries(FactorialTest FactorialLib gtest gtest_main pthread)
+
+# Enable testing
+enable_testing()
+
+include(GoogleTest)
+gtest_discover_tests(FactorialTest)
