@@ -23,27 +23,18 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                // Run the tests and save the output to an HTML file
+                // Run the tests and save the output to an XML file
                 bat '''
                     cd build
                     .\\FactorialTest --gtest_output=xml:test_results.xml
-                    .\\FactorialTest --gtest_output=html:test_results.html
                 '''
             }
         }
 
         stage('Publish Test Results') {
             steps {
+                // Publish the XML report to Jenkins
                 junit 'build/test_results.xml'
-                // Publish the HTML report to Jenkins
-                publishHTML([
-                    reportDir: "build",
-                    reportFiles: "test_results.html",
-                    reportName: "Test Results",
-                    keepAll: true,
-                    alwaysLinkToLastBuild: true,
-                    allowMissing: true // Ensure the build fails if the report is missing
-                ])
             }
         }
     }
@@ -51,7 +42,7 @@ pipeline {
     post {
         always {
             // Archiving artifacts and cleaning workspace
-            archiveArtifacts artifacts: '**/build/test_results.*', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**/build/test_results.xml', allowEmptyArchive: true
             cleanWs()
         }
     }
