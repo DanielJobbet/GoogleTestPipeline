@@ -15,15 +15,15 @@ pipeline {
             }
         }
 
-        stage('Install MinGW') {
-            steps {
-                // Install MinGW (if not already installed) to cross-compile for Windows
-                sh '''
-                    sudo apt-get update
-                    sudo apt-get install -y mingw-w64
-                '''
-            }
-        }
+        // stage('Install MinGW') {
+        //     steps {
+        //         // Install MinGW (if not already installed) to cross-compile for Windows
+        //         sh '''
+        //             sudo apt-get update
+        //             sudo apt-get install -y mingw-w64
+        //         '''
+        //     }
+        // }
 
         stage('Build') {
             steps {
