@@ -69,7 +69,7 @@ if(COVERAGE)
 
     if(GCOVR_EXECUTABLE)
         add_custom_target(coveragecmake
-            COMMAND ${GCOVR_EXECUTABLE} -r .. --html --html-details -o coverage_report.html --exclude "build/*"
+            COMMAND ${GCOVR_EXECUTABLE} -r .. --html --html-details -o coverage_report.html --exclude='.*/build/.*
             COMMAND ${CMAKE_COMMAND} -E echo "Coverage report generated in coverage_report.html"
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
             DEPENDS FactorialTest
