@@ -49,3 +49,33 @@ enable_testing()
 
 include(GoogleTest)
 gtest_discover_tests(FactorialTest)
+
+# Code coverage options
+option(COVERAGE "Enable coverage reporting" ON)
+if(COVERAGE)
+    if(NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        message(FATAL_ERROR "Coverage requires GCC or Clang")
+    endif()
+
+    message(STATUS "Building with code coverage enabled")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
+endif()
+
+# Add a target to generate coverage information using gcovr
+if(COVERAGE)
+    find_program(GCOVR_EXECUTABLE gcovr)
+
+    if(GCOVR_EXECUTABLE)
+        add_custom_target(coveragecmake
+            COMMAND ${GCOVR_EXECUTABLE} -r .. --html --html-details -o coverage_report.html
+            COMMAND ${CMAKE_COMMAND} -E echo "Coverage report generated in coverage_report.html"
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+            DEPENDS FactorialTest
+        )
+    else()
+        message(WARNING "gcovr not found! Coverage target not available.")
+    endif()
+endif()
+
