@@ -36,6 +36,16 @@ pipeline {
             steps {
                 // Publish the XML report to Jenkins!
                 junit 'build/test_results.xml'
+
+                // Publish HTML report
+                publishHTML ([
+                    reportDir: 'build',
+                    reportFiles: 'coverage_report.html',
+                    reportName: 'HTML Test Report',
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true
+                ])
             }
         }
     }
@@ -43,7 +53,7 @@ pipeline {
     post {
         always {
             // Archiving artifacts and cleaning workspace
-            archiveArtifacts artifacts: '**/build/test_results.xml', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**/build/test_results.xml, **/build/coverage_report.html', allowEmptyArchive: true
             cleanWs()
         }
     }
