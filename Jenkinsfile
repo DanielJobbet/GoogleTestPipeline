@@ -15,7 +15,7 @@ pipeline {
                 bat '''
                     mkdir build
                     cd build
-                    cmake .. -G "MinGW Makefiles"
+                    cmake .. -G "MinGW Makefiles" -DCOVERAGE=ON
                     mingw32-make.exe
                 '''
             }
@@ -27,6 +27,7 @@ pipeline {
                 bat '''
                     cd build
                     .\\FactorialTest --gtest_output=xml:test_results.xml
+                    make coveragecmake
                 '''
             }
         }
