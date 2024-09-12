@@ -63,7 +63,7 @@ if(COVERAGE)
     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
 endif()
 
-# Add a target to generate coverage information using gcovr!
+# Add a target to generate coverage information using gcovr!!
 if(COVERAGE)
     find_program(GCOVR_EXECUTABLE gcovr)
 
