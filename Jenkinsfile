@@ -2,12 +2,6 @@ pipeline {
     agent any // Uses any available agent
 
     stages {
-        // stage('Clone Repository') {
-        //     steps {
-        //         // Cloning the GitHub repository containing the source code and Google Tests
-        //         git url: 'https://github.com/DanielJobbet/GoogleTestPipeline.git', branch: 'main'
-        //     }
-        // }
 
         stage('Build') {
             steps {
