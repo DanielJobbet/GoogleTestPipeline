@@ -69,7 +69,7 @@ if(COVERAGE)
 
     if(GCOVR_EXECUTABLE)
         add_custom_target(coveragecmake
-            COMMAND ${GCOVR_EXECUTABLE} -r .. --html --html-details -o coverage_report.html --exclude "C:/Users/dantho/Downloads/Workspace_Greenhouse/Jenkins/workspace/Pipelinetest/build/_deps/.*" --filter "C:/Users/dantho/Downloads/Workspace_Greenhouse/Jenkins/workspace/Pipelinetest/src/.*" --filter "C:/Users/dantho/Downloads/Workspace_Greenhouse/Jenkins/workspace/Pipelinetest/include/.*" --filter "C:/Users/dantho/Downloads/Workspace_Greenhouse/Jenkins/workspace/Pipelinetest/tests/.*"
+            COMMAND ${GCOVR_EXECUTABLE} -r .. --html --html-details -o coverage_report.html
             COMMAND ${CMAKE_COMMAND} -E echo "Coverage report generated in coverage_report.html"
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
             DEPENDS FactorialTest
