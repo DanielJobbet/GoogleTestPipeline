@@ -52,8 +52,8 @@ pipeline {
 
     post {
         always {
-            // Archiving artifacts and cleaning workspace
-            archiveArtifacts artifacts: '**/build/test_results.xml, **/build/*.html', allowEmptyArchive: true
+            // // Archiving artifacts and cleaning workspace
+            // archiveArtifacts artifacts: '**/build/test_results.xml, **/build/*.html', allowEmptyArchive: true
             cleanWs()
         }
     }
